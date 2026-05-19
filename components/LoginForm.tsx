@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Music2, Sparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { ConcertBackground } from "@/components/ConcertBackground";
 import { ThemeSelector } from "@/components/ThemeSelector";
 
 export function LoginForm() {
@@ -46,7 +47,7 @@ export function LoginForm() {
   }
 
   return (
-    <div className="min-h-dvh bg-gradient-to-br from-primary/20 via-base-200 to-secondary/20 flex flex-col">
+    <ConcertBackground variant="login" className="flex flex-col">
       <div className="flex justify-end p-4">
         <ThemeSelector compact />
       </div>
@@ -64,7 +65,7 @@ export function LoginForm() {
             </p>
           </div>
 
-          <div className="card bg-base-100 shadow-xl border border-base-300">
+          <div className="card bg-base-100/95 backdrop-blur-sm shadow-xl border border-base-300">
             <div className="card-body">
               <h2 className="card-title text-lg">
                 {mode === "login" ? "Welcome back" : "Create your account"}
@@ -144,7 +145,7 @@ export function LoginForm() {
           </div>
         </div>
       </div>
-    </div>
+    </ConcertBackground>
   );
 }
 

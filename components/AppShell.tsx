@@ -2,14 +2,25 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, ListMusic, LogOut, PlusCircle, User } from "lucide-react";
+import {
+  CalendarDays,
+  LayoutDashboard,
+  Lightbulb,
+  ListMusic,
+  LogOut,
+  PlusCircle,
+  User,
+} from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { ConcertBackground } from "@/components/ConcertBackground";
 import { ThemeSelector } from "@/components/ThemeSelector";
 
 const NAV = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/upcoming", label: "Upcoming", icon: CalendarDays },
   { href: "/add", label: "Add Concert", icon: PlusCircle },
   { href: "/concerts", label: "My Concerts", icon: ListMusic },
+  { href: "/tips", label: "Pro Tips", icon: Lightbulb },
 ];
 
 export function AppShell({
@@ -30,8 +41,8 @@ export function AppShell({
   }
 
   return (
-    <div className="min-h-dvh bg-base-200">
-      <header className="navbar bg-base-100 border-b border-base-300 shadow-sm px-4 lg:px-8">
+    <ConcertBackground variant="app">
+      <header className="navbar bg-base-100/90 backdrop-blur-md border-b border-base-300 shadow-sm px-4 lg:px-8">
         <div className="flex-1 flex-col items-start gap-0.5 min-w-0">
           <h1 className="text-lg sm:text-xl font-bold truncate">Concert Cost Tracker</h1>
           <p className="text-xs text-base-content/60 hidden sm:block">
@@ -54,7 +65,7 @@ export function AppShell({
       </header>
 
       <div className="px-4 lg:px-8 py-4 max-w-7xl mx-auto w-full">
-        <div role="tablist" className="tabs tabs-boxed bg-base-100 shadow-sm mb-6 w-full flex-wrap">
+        <div role="tablist" className="tabs tabs-boxed bg-base-100/95 shadow-sm mb-6 w-full flex-wrap">
           {NAV.map(({ href, label, icon: Icon }) => {
             const active = pathname === href;
             return (
@@ -72,7 +83,7 @@ export function AppShell({
         </div>
         {children}
       </div>
-    </div>
+    </ConcertBackground>
   );
 }
 
